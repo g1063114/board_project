@@ -11,6 +11,7 @@ import project.board.entity.Member;
 import project.board.service.MemberService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,5 +33,12 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/members")
+    public String memberList(Model model){
+        List<Member> findMembers = memberService.findMembers();
+        model.addAttribute("members",findMembers);
+        return "members/memberList";
     }
 }

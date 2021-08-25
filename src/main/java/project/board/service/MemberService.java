@@ -24,11 +24,22 @@ public class MemberService {
         return saveMember.getId();
     }
 
+    // 회원 중복 검사
     private void duplicateCheck(Member member) {
         List<Member> findMember = memberRepository.findByUsername(member.getUsername());
         if( !findMember.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
+    }
+
+    // 회원 리스트 출력
+    public List<Member> findMembers(){
+        return memberRepository.findAll();
+    }
+
+    // 회원 한명 출력
+    public Member findOne(Long id){
+        return memberRepository.findById(id).get();
     }
 
 }
