@@ -19,17 +19,12 @@ public class Board extends BaseEntity{
     @Lob
     private String content;
 
-    @OneToMany(mappedBy = "board")
-    private List<Member> members = new ArrayList<>();
+    private String writer;
 
-    public Board(String title, String content) {
+    public Board(String title, String content, String writer) {
         this.title = title;
         this.content = content;
-    }
-
-    public void changePostMember(Member member){
-        members.add(member);
-        member.setBoard(this);
+        this.writer = writer;
     }
 
 }
