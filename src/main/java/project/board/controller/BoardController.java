@@ -32,7 +32,13 @@ public class BoardController {
     public String postBoard(@Valid BoardForm boardForm){
         Board posting = new Board(boardForm.getTitle(), boardForm.getContent(),boardForm.getWriter());
         boardService.post(posting);
-
         return "redirect:/";
+    }
+
+    @GetMapping("/boards")
+    public String boardList(Model model){
+        List<Board> list = boardService.list();
+        model.addAttribute("boardList",list);
+        return "board/boardList";
     }
 }

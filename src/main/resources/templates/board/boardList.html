@@ -11,16 +11,17 @@
         <th>#</th>
         <th>제목</th>
         <th>답변 수</th>
+        <th>작성자</th>
         <th>등록일</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="board : ${boardList}">
-        <td th:text="${member.id}"></td>
-        <td th:text="${member.username}"></td>
-        <td th:text="${member.address?.city}"></td>
-        <td th:text="${member.address?.street}"></td>
-        <td th:text="${member.address?.zipcode}"></td>
+        <td th:text="${board.id}"></td>
+        <td th:text="${board.title}"></td>
+        <td th:text="${board}"></td>
+        <td th:text="${board.writer}"></td>
+        <td th:text="${board.getCreateBy()}"></td>
       </tr>
       </tbody>
     </table>

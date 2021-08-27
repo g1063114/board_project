@@ -22,7 +22,7 @@ public class BoardService {
     }
 
     // 게시판 출력
-    public List<Board> boardList(){
+    public List<Board> list(){
         return boardRepository.findAll();
     }
 }
