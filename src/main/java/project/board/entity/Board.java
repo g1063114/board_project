@@ -21,12 +21,7 @@ public class Board extends BaseEntity{
     @Lob
     private String content;
 
-    private String writer;
-
-    public Board(String title, String content, String writer) {
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
-    }
+    @OneToMany(mappedBy = "board")
+    private List<Member> members = new ArrayList<>();
 
 }
