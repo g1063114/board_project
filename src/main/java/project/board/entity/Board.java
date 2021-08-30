@@ -24,4 +24,11 @@ public class Board extends BaseEntity{
     @OneToMany(mappedBy = "board")
     private List<Member> members = new ArrayList<>();
 
+    public void settingMember(Member member){
+        this.members.add(member);
+        if( member.getBoard() != this){
+            member.setBoard(this);
+        }
+    }
+
 }
