@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,4 +24,11 @@ public class Member extends BaseEntity{
     @Embedded
     private Address address;
 
+    @OneToMany(mappedBy = "member")
+    private List<Board> boards = new ArrayList<>();
+
+    public Member(String username, Address address) {
+        this.username = username;
+        this.address = address;
+    }
 }
