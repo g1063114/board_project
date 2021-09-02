@@ -28,9 +28,14 @@ public class Board extends BaseEntity{
     @OneToMany(mappedBy = "board")
     private List<Comment> comments = new ArrayList<>();
 
-    public Board(String title, String content, Member member) {
+    public Board(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    // 연관관계 메서드
+    public void settingMember(Member member){
         this.member = member;
+        member.getBoards().add(this);
     }
 }

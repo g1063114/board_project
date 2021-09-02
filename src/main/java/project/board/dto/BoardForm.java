@@ -15,6 +15,6 @@ public class BoardForm {
     @NotEmpty(message = "제목은 필수 입니다.")
     private String title;
     private String content;
-    private Member writer;
+    private String writer;
 
 }

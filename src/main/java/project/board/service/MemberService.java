@@ -42,4 +42,9 @@ public class MemberService {
         return memberRepository.findById(id).get();
     }
 
+    // 회원 이름 검색
+    public Member findUserName(String username){
+        return memberRepository.findByUsername(username).get(0);
+    }
+
 }

@@ -24,13 +24,19 @@ public class BoardController {
 
     @GetMapping("/board/new")
     public String createBoard(Model model){
+
+        List<Member> members = memberService.findMembers();
         model.addAttribute("boardForm",new BoardForm());
+        model.addAttribute("members",members);
+
         return "board/createBoardForm";
     }
 
     @PostMapping("/board/new")
     public String postBoard(@Valid BoardForm boardForm){
-        Board posting = new Board(boardForm.getTitle(), boardForm.getContent(),boardForm.getWriter());
+        Board posting = new Board(boardForm.getTitle(), boardForm.getContent());
+        Member findMember = memberService.findUserName(boardForm.getWriter());
+        posting.settingMember(findMember);
         boardService.post(posting);
         return "redirect:/";
     }

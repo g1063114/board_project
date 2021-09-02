@@ -10,4 +10,5 @@ import project.board.repository.CommentRepository;
 public class CommentService {
 
     private final CommentRepository commentRepository;
+
 }
