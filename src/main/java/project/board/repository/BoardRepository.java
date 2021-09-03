@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import project.board.entity.Board;
 
+import java.util.List;
+
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    @Query("select count(comments) from Board b where b.id =: boardId")
-    public int getCommnetCount(@Param("boardId") Long boardId);
+    @Query("select b from Board b left join fetch b.member")
+    List<Board> boardFetchJoin();
 }

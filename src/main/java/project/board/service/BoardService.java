@@ -23,6 +23,6 @@ public class BoardService {
 
     // 게시판 출력
     public List<Board> list(){
-        return boardRepository.findAll();
+        return boardRepository.boardFetchJoin();
     }
 }
