@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.board.dto.BoardForm;
 import project.board.dto.MemberForm;
@@ -46,5 +48,18 @@ public class BoardController {
         List<Board> list = boardService.list();
         model.addAttribute("boardList",list);
         return "board/boardList";
+    }
+
+    @GetMapping("/board/{boardId}")
+    public String boardDetail(@PathVariable("boardId") Long boardId, Model model){
+        Board findOne = boardService.detail(boardId);
+        model.addAttribute("board",findOne);
+        return "board/detail";
+    }
+
+    @PostMapping("/board/{boardId}")
+    public String updateDetail(@PathVariable Long boardId, @ModelAttribute("form") BoardForm form){
+        boardService.updateBoard(boardId,form.getTitle(), form.getContent());
+        return "redirect:/boards";
     }
 }
