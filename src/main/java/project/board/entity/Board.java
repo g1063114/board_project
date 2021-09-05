@@ -42,4 +42,8 @@ public class Board extends BaseEntity{
         this.member = member;
         member.getBoards().add(this);
     }
+
+    public void addCommentCount(){
+        this.setCommentCount(this.getCommentCount()+1);
+    }
 }

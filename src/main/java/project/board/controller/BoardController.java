@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.board.dto.BoardForm;
+import project.board.dto.CommentForm;
 import project.board.dto.MemberForm;
 import project.board.entity.Board;
 import project.board.entity.Member;
@@ -53,7 +54,10 @@ public class BoardController {
     @GetMapping("/board/{boardId}")
     public String boardDetail(@PathVariable("boardId") Long boardId, Model model){
         Board findOne = boardService.detail(boardId);
+        CommentForm temp = new CommentForm();
+        temp.setBoard(findOne);
         model.addAttribute("board",findOne);
+        model.addAttribute("commentForm",temp);
         return "board/detail";
     }
 

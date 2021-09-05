@@ -31,4 +31,14 @@ public class Comment extends BaseEntity{
 
     @OneToMany(mappedBy = "parent")
     private List<Comment> child = new ArrayList<>();
+
+    public Comment(String content) {
+        this.content = content;
+    }
+
+    // 연관관계 메서드
+    public void settingComment(Board board){
+        this.board = board;
+        board.getComments().add(this);
+    }
 }
