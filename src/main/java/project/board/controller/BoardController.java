@@ -11,8 +11,10 @@ import project.board.dto.BoardForm;
 import project.board.dto.CommentForm;
 import project.board.dto.MemberForm;
 import project.board.entity.Board;
+import project.board.entity.Comment;
 import project.board.entity.Member;
 import project.board.service.BoardService;
+import project.board.service.CommentService;
 import project.board.service.MemberService;
 
 import javax.validation.Valid;
@@ -24,6 +26,7 @@ public class BoardController {
 
     private final BoardService boardService;
     private final MemberService memberService;
+    private final CommentService commentService;
 
     @GetMapping("/board/new")
     public String createBoard(Model model){
@@ -56,8 +59,10 @@ public class BoardController {
         Board findOne = boardService.detail(boardId);
         CommentForm temp = new CommentForm();
         temp.setBoard(findOne);
+        List<Comment> comments = commentService.commentList(findOne.getId());
         model.addAttribute("board",findOne);
         model.addAttribute("commentForm",temp);
+        model.addAttribute("commentList",comments);
         return "board/detail";
     }
 
