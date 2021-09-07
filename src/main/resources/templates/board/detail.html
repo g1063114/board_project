@@ -36,23 +36,12 @@
   <div>
     <table class="table table-striped">
       <thead>
-      <tr>
-        <th>#</th>
-        <th>제목</th>
-        <th>답변 수</th>
-        <th>작성자</th>
-        <th>등록일</th>
-      </tr>
       </thead>
       <tbody>
-      <tr th:each="board : ${boardList}">
-        <td th:text="${board.id}"></td>
-        <td>
-          <a th:href="@{/board/{id} (id=${board.id})}" th:text="${board.title}"></a>
-        </td>
-        <td th:text="${board.commentCount}"></td>
-        <td th:text="${board.member.username}"></td>
-        <td th:text="${board.createdDate}"></td>
+      <tr th:each="comment : ${commentList}">
+        <td th:text="${comment.id}"></td>
+        <td th:text="${comment.content}"></td>
+        <td th:text="${comment.createdDate}"></td>
       </tr>
       </tbody>
     </table>
