@@ -16,7 +16,6 @@ import java.util.List;
 public class CommentService {
 
     private final CommentRepository commentRepository;
-    private final CommentRepositoryCustom commentRepositoryCustom;
 
     // 댓글 작성
     @Transactional
@@ -27,6 +26,6 @@ public class CommentService {
 
     // 댓글 출력
     public List<Comment> commentList(Long boardId){
-        return commentRepositoryCustom.findAllCommentCustom(boardId);
+        return commentRepository.findAllCommentCustom(boardId);
     }
 }
