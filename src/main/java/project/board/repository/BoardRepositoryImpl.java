@@ -22,8 +22,6 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
 
     @Override
     public Page<Board> boardPaging(Pageable pageable) {
-        queryFactory
-                .selectFrom(board)
-                .leftJoin(board, board.member)
+        return null;
     }
 }
